@@ -53,7 +53,7 @@ vlm/
 │   └── basic_inference.py       # Inference and metrics visualization
 ├── inference_results/            # Output directory for results
 │   └── similarity_grid.jpg      # Image-text retrieval visualization
-└── pyproject.toml               # Project dependencies
+└── requirements.txt             # Project dependencies
 ```
 
 ## Installation
@@ -73,14 +73,8 @@ cd vlm
 
 2. **Install dependencies**
 
-Using `uv` (recommended):
 ```bash
-uv pip install -e .
-```
-
-Or using `pip`:
-```bash
-pip install -e .
+pip install -r requirements.txt
 ```
 
 
@@ -88,7 +82,7 @@ pip install -e .
 
 Run the filter script to download Conceptual Captions:
 ```bash
-uv run vlm_train/utils/filter_dataset.py
+python vlm_train/utils/filter_dataset.py
 ```
 
 This will download ~200k image-caption pairs to `dataset/conceptual-captions-200k.parquet`.
@@ -114,7 +108,7 @@ img2dataset --url_list dataset/conceptual-captions-200k.parquet \
 The Q-Former learns to align visual features from ViT with text embeddings from DistilBERT using contrastive learning:
 
 ```bash 
-uv run vlm_train/q_former_train.py
+python vlm_train/q_former_train.py
 ```
 
 **Key hyperparameters:**
@@ -130,7 +124,7 @@ The trained model will be saved to `models/trained_qformer/best/`.
 Fine-tune a language model to understand visual inputs through the trained Q-Former:
 
 ```bash
-uv run vlm_train/lm_train.py
+python vlm_train/lm_train.py
 ```
 
 **Key hyperparameters:**
@@ -149,7 +143,7 @@ Models are saved to `models/vlm_peft/best/` and `models/vlm_peft/latest/`.
 Test the model on evaluation samples:
 
 ```bash
-uv run vlm_train/test_generation.py
+python vlm_train/test_generation.py
 ```
 
 This generates captions for samples 130-160 and saves results to `test_generation_results.csv`.
@@ -159,7 +153,7 @@ This generates captions for samples 130-160 and saves results to `test_generatio
 Run inference to compute image-to-text and text-to-image retrieval metrics:
 
 ```bash
-uv run vlm_train/basic_inference.py
+python vlm_train/basic_inference.py
 ```
 
 This generates:
