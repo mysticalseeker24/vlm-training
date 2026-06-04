@@ -67,7 +67,7 @@ vlm/
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/avbiswas/vlm.git
+git clone https://github.com/mysticalseeker24/vlm-training.git
 cd vlm
 ```
 
